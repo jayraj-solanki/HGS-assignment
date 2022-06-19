@@ -4,12 +4,16 @@ def highlight_string(string):
     return "<mark>"+string+"</mark>"
 
 def prepare_error(error_string):
-    return "<p> ERROR: " + error_string + "</p>"
+    return "<p> ERROR:</br> " + error_string + "</p>"
 
 def html_string_with_highlight(string, start, end):
     is_empty_check = validate_string_start_end_is_empty(string, start, end)
     if is_empty_check is not True:
         return prepare_error(is_empty_check)
+
+    is_numeric_check = validate_start_end_is_numeric(start, end)
+    if is_numeric_check is not True:
+        return prepare_error(is_numeric_check)
 
     start = int(start)
     end = int(end)
@@ -18,7 +22,7 @@ def html_string_with_highlight(string, start, end):
     if validity_check is not True:
         return prepare_error(validity_check)
 
-    return "<p>Output: " + string[:start] + highlight_string(string[start:end])  + string[end:] + "</p>"
+    return "<p>Output:</br> " + string[:start] + highlight_string(string[start:end])  + string[end:] + "</p>"
 
 def validate_scenario(start, end, string):
     if validate_start_le_end(start,end) is False:
@@ -32,6 +36,11 @@ def validate_scenario(start, end, string):
 def validate_string_start_end_is_empty(string, start, end):
     if start =='' or end =='' or string == '':
         return consts.MESSAGES['STRING_START_END_IS_EMPTY']
+    return True
+
+def validate_start_end_is_numeric(start, end):
+    if not start.lstrip('-').isnumeric() or not end.lstrip('-').isnumeric() :
+        return consts.MESSAGES['START_END_IN_NOT_NUMERIC']
     return True
 
 def validate_start_le_end(start, end):
