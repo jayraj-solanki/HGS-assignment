@@ -1,6 +1,7 @@
 String Highlighter-
 This app is to highlight a slice of a string in the provided input, start and end
-![image](https://user-images.githubusercontent.com/25260417/174498896-464695b7-597d-4ce7-818b-d94c1f6d266e.png)
+![image](https://user-images.githubusercontent.com/25260417/174498957-3f03c985-0b3a-4268-ac4c-5cb07a812a6a.png)
+
 
 To execute the code just go into folder string_highlighter where you'll find the manage.py and execute the following command:
 > python manage.py runserver
