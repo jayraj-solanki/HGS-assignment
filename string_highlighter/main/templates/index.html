@@ -6,25 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>String Highlighter</title>
 </head>
-<body style="background-color: grey;border: 1px solid black;height: 100vh; width: 100%"">
+<body style="background-color: grey;height: 100vh; width: 100%"">
     
-    <div style="border: 1px solid black;height: 100%; width: 100%;box-sizing: border-box;">
-        <div name="heading" style="border: 2px solid blue; height:10%;width: 100%; box-sizing: border-box;">
+    <div style="height: 100%; width: 100%;box-sizing: border-box;">
+        <div name="heading" style=" height:10%;width: 100%; box-sizing: border-box;">
             <h1>String Highlighter</h1>
         </div>
-        
-        <div name="input" style="display:flex;border: 2px solid blue; height:30%;width: 100%; box-sizing: border-box;">
-            <div name="inputText" style="padding:10px;flex:1;border: 2px solid red;width: 50%;">
-                <textarea style="resize: none;height: 100%; width:100%"></textarea>
+        <form method="post" class="post-form" action={% url 'highlight_string' %}>
+            {% csrf_token %}
+            <div name="input" style="display:flex; height:30%; width: 100%; ">
+                <div style="padding:10px; flex:1; width: 50%;">
+                    <input name="inputText" value="{{ normal_str }}" style="height:100%; width:100%;" />
+                </div>
+                <div name="submit" style="padding:10px;flex:1;width: 50%;">
+                    <h3>start: <input name="start" value="{{ start }}" type="text" /></h3>
+                    <h3>end: <input name="end" value="{{ end }}" type="text" /></h3>
+                    <h3>string length: {{string_length}}</h3>
+                    <button type="submit" value="Submit" onclick=>Submit</button>
+                </div>
             </div>
-            <div name="submit" style="padding:10px;flex:1;border: 2px solid red;width: 50%;">
-                <h3>start: <input type="text" /></h3>
-                <h3>end: <input type="text" /></h3>
-                <button type="submit" value="Submit">Submit</button>
-            </div>
-        </div>
-        <div name="output" style="border: 2px solid blue; height:30%;width: 100%; box-sizing: border-box;">
-            <p>Hel<mark>lo Wo</mark>rld</p>
+        </form>
+        <div name="output" style="padding:10px; height:30%;width: 100%; ">
+            <h3>
+                {{hg_str|safe}}
+            </h3>
+            
         </div>
     </div> 
 
